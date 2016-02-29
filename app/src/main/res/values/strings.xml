@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">reminder-kotlin</string>
+    <string name="app_name">example-kotlin</string>
+    <string name="add_new_note">novo</string>
 </resources>
