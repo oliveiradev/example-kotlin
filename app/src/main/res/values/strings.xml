@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">example-kotlin</string>
     <string name="add_new_note">novo</string>
+    <string name="note_content_hint">Describe your note</string>
 </resources>
