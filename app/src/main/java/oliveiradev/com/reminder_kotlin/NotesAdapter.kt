@@ -11,13 +11,13 @@ import java.util.*
 /**
  * Created by felipe on 28/02/16.
  */
-class NotesAdapter(val notes: ArrayList<Note>) : RecyclerView.Adapter<NotesAdapter.ViewHolder>(){
+class NotesAdapter(val notes: ArrayList<Note>,val listener: (Note) -> Unit) : RecyclerView.Adapter<NotesAdapter.ViewHolder>(){
 
 
     override fun getItemCount(): Int = notes.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(notes[position])
+        holder.bind(notes[position],listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
@@ -29,10 +29,16 @@ class NotesAdapter(val notes: ArrayList<Note>) : RecyclerView.Adapter<NotesAdapt
         notifyDataSetChanged()
     }
 
+    fun remove(note: Note):Unit{
+        notes.remove(note)
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        fun bind(note: Note) = with(itemView) {
+        fun bind(note: Note ,  listener: (Note) -> Unit) = with(itemView) {
             note_text.text = note.content
             card.setCardBackgroundColor(Color.parseColor(note.color))
+            delete_note.setOnClickListener { listener(note) }
         }
     }
 }

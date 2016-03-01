@@ -18,7 +18,7 @@ open class NotesActivity : BaseActivity() {
         val REQUEST_NEW_NOTE = 1023
     }
 
-    val adapter: NotesAdapter = NotesAdapter(ArrayList())
+    val adapter: NotesAdapter = NotesAdapter(ArrayList()){removeNoteOnAdapter(it)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,5 +45,9 @@ open class NotesActivity : BaseActivity() {
 
     fun addNoteOnAdapter(note: Note):Unit{
         adapter.add(note)
+    }
+
+    fun removeNoteOnAdapter(note: Note):Unit{
+        adapter.remove(note)
     }
 }
