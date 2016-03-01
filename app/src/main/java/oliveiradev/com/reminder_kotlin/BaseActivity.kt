@@ -14,8 +14,15 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
     }
 
-    inline public fun <reified T : Activity> navigate(){
-        var intent = Intent(this,T::class.java)
-            startActivity(intent)
+    inline fun <reified T : Activity> navigate(isStartForResult: Boolean = false, requestCode: Int = 0) {
+        var intent = Intent(this, T::class.java)
+        startActivity(intent, isStartForResult, requestCode)
+    }
+
+    fun startActivity(intent: Intent, isStartForResult: Boolean, requestCode: Int) {
+        when (isStartForResult) {
+            true -> startActivityForResult(intent, requestCode)
+            false -> startActivity(intent)
+        }
     }
 }
